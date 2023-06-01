@@ -1,3 +1,5 @@
-export const HOME_URL = "/";
-export const LOGIN_URL = "login";
-export const REGIST_URL = "registr";
+export enum ROUTES {
+    HOME_URL = "/",
+    LOGIN_URL = "login",
+    REGIST_URL = "registr",
+}
