@@ -1,6 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import { Routing } from "./AppRouter/AppRouter";
-import { HOME_URL, LOGIN_URL, REGIST_URL } from "./AppRouter/pathRouter";
+import { ROUTES } from "./AppRouter/pathRouter";
 
 const App = () => {
   return (
@@ -10,4 +10,4 @@ const App = () => {
   );
 };
 
-export { App, LOGIN_URL, HOME_URL, REGIST_URL };
+export { App, ROUTES };

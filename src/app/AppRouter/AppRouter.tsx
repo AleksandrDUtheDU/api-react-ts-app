@@ -9,6 +9,7 @@ export function Routing() {
         <Route index element={<div>Основное MAIN</div>} />
         <Route path={ROUTES.LOGIN_URL} element={<div>AuthForm LOGIN</div>} />
         <Route path={ROUTES.REGIST_URL} element={<div>AuthForm REGIST</div>} />
+        
       </Route>
     </Routes>
   );
