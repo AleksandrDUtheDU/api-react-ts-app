@@ -2,7 +2,7 @@ import { Button, AppBar, Box, Toolbar, Container } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LoginIcon from "@mui/icons-material/Login";
 import { Link } from "react-router-dom";
-import { ROUTES } from "../../../../app"; // не уверен что понимаю куда их лучше поместить
+import { ROUTES } from "../../../../app/pathRouter";
 import { Logo } from "../Logo/Logo";
 import { ButtonSwitchTheme } from "../../../../shared/theme";
 

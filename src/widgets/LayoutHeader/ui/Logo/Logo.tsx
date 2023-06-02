@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import { ROUTES } from "../../../../app";
+import { ROUTES } from "../../../../app/pathRouter";
 import { Link } from "react-router-dom";
 import css from "./Logo.module.css";
 

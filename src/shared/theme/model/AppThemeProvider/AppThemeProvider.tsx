@@ -1,10 +1,11 @@
+import { FC, ReactNode } from "react";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext } from "../ColorModeContext/ColorModeContext";
 import { useMode } from "../../hooks/useMode";
-import { iReactNode } from "./iReactNode";
 
-export function AppThemeProvider({ children }: iReactNode) {
+export const AppThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [theme, colorMode] = useMode();
+
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
@@ -13,4 +14,4 @@ export function AppThemeProvider({ children }: iReactNode) {
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
-}
+};

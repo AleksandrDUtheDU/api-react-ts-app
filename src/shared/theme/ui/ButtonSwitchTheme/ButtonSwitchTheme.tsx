@@ -7,7 +7,7 @@ import { ColorModeContext } from "../../model/ColorModeContext/ColorModeContext"
 
 export function ButtonSwitchTheme() {
   const theme = useTheme();
-  const colorMode: any = useContext(ColorModeContext);
+  const colorMode = useContext(ColorModeContext);
 
   return (
     <IconButton

@@ -7,7 +7,7 @@ export function Layout() {
   return (
     <>
       <LayoutHeader />
-      <Container maxWidth="lg">
+      <Container sx={{ mt: 10 }} maxWidth="lg">
         <Outlet />
       </Container>
       <LayoutFooter />

@@ -1,6 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
 import { Routing } from "./AppRouter/AppRouter";
-import { ROUTES } from "./AppRouter/pathRouter";
 import { AppThemeProvider } from "../shared/theme";
 
 const App = () => {
@@ -13,4 +12,4 @@ const App = () => {
   );
 };
 
-export { App, ROUTES };
+export { App };
