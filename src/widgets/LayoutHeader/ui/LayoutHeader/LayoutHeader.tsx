@@ -4,6 +4,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../../../app"; // не уверен что понимаю куда их лучше поместить
 import { Logo } from "../Logo/Logo";
+import { ButtonSwitchTheme } from "../../../../shared/theme";
 
 export function LayoutHeader() {
   return (
@@ -31,6 +32,7 @@ export function LayoutHeader() {
               >
                 Регистрация
               </Button>
+              <ButtonSwitchTheme />
             </Box>
           </Toolbar>
         </Container>

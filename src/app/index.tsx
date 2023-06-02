@@ -1,12 +1,15 @@
 import { BrowserRouter } from "react-router-dom";
 import { Routing } from "./AppRouter/AppRouter";
 import { ROUTES } from "./AppRouter/pathRouter";
+import { AppThemeProvider } from "../shared/theme";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Routing />
-    </BrowserRouter>
+    <AppThemeProvider>
+      <BrowserRouter>
+        <Routing />
+      </BrowserRouter>
+    </AppThemeProvider>
   );
 };
 
