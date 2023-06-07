@@ -11,7 +11,7 @@ export function LayoutFooter() {
         backgroundColor: "primary.main",
         color: "white",
         padding: 2,
-        position: "absolute",
+        position: "fixed",
         bottom: 0,
         width: "100%",
         zIndex: 10,
