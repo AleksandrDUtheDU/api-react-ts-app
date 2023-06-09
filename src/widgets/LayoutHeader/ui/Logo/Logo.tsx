@@ -1,7 +1,6 @@
 import { Typography } from "@mui/material";
 import { ROUTES } from "../../../../app/pathRouter";
 import { Link } from "react-router-dom";
-import css from "./Logo.module.css";
 
 export function Logo() {
   return (
@@ -12,7 +11,7 @@ export function Logo() {
       color="inherit"
       sx={{ flexGrow: 1, textDecoration: "none" }}
     >
-      USERNAME API
+      ФИЛЬМОПОИСК
     </Typography>
   );
 }

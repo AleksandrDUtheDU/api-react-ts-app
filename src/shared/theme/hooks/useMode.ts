@@ -1,11 +1,15 @@
 import { useState, useMemo } from "react";
-import { createTheme } from "@mui/material";
+import { Theme, createTheme } from "@mui/material";
 import { themeSettings } from "../model/ThemeSettings/themeSettings";
 
-export const useMode = () => {
+interface ColorMode {
+  toggleColorMode: () => void;
+}
+
+export const useMode = (): [Theme, ColorMode] => {
   const [mode, setMode] = useState<"light" | "dark">("light");
 
-  const colorMode = useMemo(
+  const colorMode: ColorMode = useMemo(
     () => ({
       toggleColorMode: () =>
         setMode((prev) => (prev === "light" ? "dark" : "light")),
@@ -13,7 +17,7 @@ export const useMode = () => {
     []
   );
 
-  const theme: any = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+  const theme: Theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
 
   return [theme, colorMode];
 };
