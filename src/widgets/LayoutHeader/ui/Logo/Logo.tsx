@@ -14,7 +14,7 @@ export function Logo() {
       color="inherit"
       sx={{ flexGrow: 1, textDecoration: "none" }}
     >
-      {matchesMobile ? "ФК" : "ФИЛЬМОПОИСК"}
+      {matchesMobile ? "ФП" : "ФИЛЬМОПОИСК"}
     </Typography>
   );
 }

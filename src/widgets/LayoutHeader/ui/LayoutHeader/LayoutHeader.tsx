@@ -44,7 +44,7 @@ export function LayoutHeader() {
     <Box>
       <AppBar sx={{ backgroundColor: "primary.main" }} position="fixed">
         <Container maxWidth="lg">
-          <Toolbar>
+          <Toolbar sx={{ paddingLeft: 0, paddingRight: 0 }}>
             <Logo />
             <Button
               component={Link}
@@ -105,7 +105,7 @@ export function LayoutHeader() {
                   to={ROUTES.LOGIN_URL}
                   color="inherit"
                   startIcon={<LoginIcon />}
-                  sx={{ marginLeft: 1, fontSize: 16 }}
+                  sx={{ fontSize: 14 }}
                 >
                   {matchesMobile ? "" : "Вход"}
                 </Button>
@@ -114,7 +114,7 @@ export function LayoutHeader() {
                   to={ROUTES.REGIST_URL}
                   color="inherit"
                   startIcon={<AccountCircleIcon />}
-                  sx={{ marginLeft: 1, fontSize: 16 }}
+                  sx={{ fontSize: 14 }}
                 >
                   {matchesMobile ? "" : "Регистрация"}
                 </Button>
