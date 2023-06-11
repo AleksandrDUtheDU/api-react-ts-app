@@ -10,7 +10,7 @@ import {
 import { FilmCard } from "../../entities/FilmCart/FilmCart";
 import SearchIcon from "@mui/icons-material/Search";
 import { useDebounce } from "../../shared/hooks/useDebounse";
-import { useFetchToStringFilmQuery } from "../../shared/api/services/filmApi";
+import { useFetchToStringFilmQuery } from "../../shared/api/services";
 
 export default function SearchPage() {
   const [page, setPage] = useState(1);

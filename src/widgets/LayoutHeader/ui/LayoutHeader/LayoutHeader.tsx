@@ -18,13 +18,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "../../../../app/pathRouter";
 import { Logo } from "../Logo/Logo";
 import { ButtonSwitchTheme } from "../../../../shared/theme";
+import { useMathes } from "../../../../shared/theme/hooks/useMathes";
 import { useUserAuth } from "../../../../shared/firebase";
 
 export function LayoutHeader() {
   const { user, logout } = useUserAuth();
   const navigate = useNavigate();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
-
+  const { matchesMobile } = useMathes();
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -106,7 +107,7 @@ export function LayoutHeader() {
                   startIcon={<LoginIcon />}
                   sx={{ marginLeft: 1, fontSize: 16 }}
                 >
-                  Вход
+                  {matchesMobile ? "" : "Вход"}
                 </Button>
                 <Button
                   component={Link}
@@ -115,7 +116,7 @@ export function LayoutHeader() {
                   startIcon={<AccountCircleIcon />}
                   sx={{ marginLeft: 1, fontSize: 16 }}
                 >
-                  Регистрация
+                  {matchesMobile ? "" : "Регистрация"}
                 </Button>
               </Box>
             )}

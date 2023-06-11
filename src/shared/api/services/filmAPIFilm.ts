@@ -36,33 +36,8 @@ interface SearchToIdResponce {
   };
 }
 
-interface SearchToStringResponce {
-  keyword: string;
-  pagesCount: number;
-  films: {
-    filmId: number;
-    nameRu: string;
-    nameEn: string;
-    type: string;
-    year: string;
-    description: string;
-    filmLength: string;
-    countries: {
-      country: string;
-    }[];
-    genres: {
-      genre: string;
-    }[];
-    rating: string;
-    ratingVoteCount: number;
-    posterUrl: string;
-    posterUrlPreview: string;
-  }[];
-  searchFilmsCountResult: number;
-}
-
-export const filmAPI = createApi({
-  reducerPath: "filmAPI",
+export const filmAPIFilm = createApi({
+  reducerPath: "filmAPIFilm",
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL_FILMS,
     headers: {
@@ -74,21 +49,12 @@ export const filmAPI = createApi({
       query: (path: string) => ({
         url: `/${path}`,
       }),
-      transformResponse: (
-        response: { result: { data: SearchToIdResponce } },
-        meta
-      ) => response.result.data,
-    }),
-    fetchToStringFilm: build.query<SearchToStringResponce, [string, number]>({
-      query: ([name, page]) => ({
-        url: `/search-by-keyword`,
-        params: {
-          keyword: name,
-          page: page,
-        },
-      }),
+      // transformResponse: (
+      //   response: { result: { data: SearchToIdResponce } },
+      //   meta
+      // ) => response.result.data,
     }),
   }),
 });
 
-export const { useFetchIDFilmQuery, useFetchToStringFilmQuery } = filmAPI;
+export const { useFetchIDFilmQuery } = filmAPIFilm;

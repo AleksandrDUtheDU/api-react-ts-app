@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
-import { useFetchIDFilmQuery } from "../../shared/api/services/filmApi";
+import { useFetchIDFilmQuery } from "../../shared/api/services";
 import { useCurrentPathArr } from "../../shared/hooks/useCurrentPathArr";
 
 export default function FilmInfoPage() {

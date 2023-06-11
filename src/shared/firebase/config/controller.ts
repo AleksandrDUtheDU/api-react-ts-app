@@ -22,18 +22,13 @@ export const favoriteCollection = collection(db, "favorite");
 
 export const addSearchHistory = async (searchData: SearchItem) => {
   const newSerarchItem = await addDoc(searchCollection, { ...searchData });
-  console.log(`The new SerarchItem was created at ${newSerarchItem.path}`);
-  console.log(newSerarchItem);
 };
 
 export const addFavoriteFilm = async (searchData: Film) => {
   const newSerarchItem = await addDoc(favoriteCollection, { ...searchData });
-  console.log(`The new SerarchItem was created at ${newSerarchItem.path}`);
-  console.log(newSerarchItem);
 };
 
 export const deleteFavoriteFilm = async (id: string) => {
   const document = doc(db, `hotels/${id}`);
   await deleteDoc(document);
-  console.log(`The hotel has now been deleted`);
 };
