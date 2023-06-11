@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import {
   User,
   UserCredential,
@@ -15,6 +16,16 @@ interface AuthContextModel {
   signIn: (email: string, password: string) => Promise<UserCredential>;
   logout: () => Promise<void>;
 }
+
+const authContextModel = {
+  user: PropTypes.shape({
+    uid: PropTypes.string,
+    email: PropTypes.string,
+  }),
+  createUser: PropTypes.func.isRequired,
+  signIn: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
+};
 
 export const UserContext = createContext<AuthContextModel>(
   {} as AuthContextModel
@@ -36,7 +47,6 @@ export const AppAuthProvider: FC<IAuthProvider> = ({ children }) => {
   };
 
   const logout = () => {
-    //localStorage.removeItem("cards");
     return signOut(auth);
   };
 
@@ -44,9 +54,7 @@ export const AppAuthProvider: FC<IAuthProvider> = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
-    return () => {
-      unsubscribe();
-    };
+    return () => unsubscribe();
   }, []);
 
   return (

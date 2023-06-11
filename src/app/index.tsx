@@ -1,23 +1,25 @@
 import { RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
-import * as fairbase from "firebase/app";
-import { firebaseConfig } from "../shared/firebase/config/fairbaseKeys";
+import { PersistGate } from "redux-persist/integration/react";
 import { router } from "./AppRouter/AppRouter";
-import { store } from "../shared/api/store/store";
+import { store, persistor } from "../shared/api/store/store";
 import { AppThemeProvider } from "../shared/theme";
 import { AppAuthProvider } from "../shared/firebase";
-
-fairbase.initializeApp(firebaseConfig);
+import ErrorBoundary from "./AppRouter/ErrorBoundary";
 
 const App = () => {
   return (
-    <Provider store={store}>
+    <ErrorBoundary>
       <AppAuthProvider>
-        <AppThemeProvider>
-          <RouterProvider router={router} />
-        </AppThemeProvider>
+        <PersistGate loading={null} persistor={persistor}>
+          <Provider store={store}>
+            <AppThemeProvider>
+              <RouterProvider router={router} />
+            </AppThemeProvider>
+          </Provider>
+        </PersistGate>
       </AppAuthProvider>
-    </Provider>
+    </ErrorBoundary>
   );
 };
 

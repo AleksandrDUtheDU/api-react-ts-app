@@ -1,21 +1,26 @@
 import { FC } from "react";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
-import CardActions from "@mui/material/CardActions";
-import IconButton from "@mui/material/IconButton";
+import { Link } from "react-router-dom";
+import {
+  CardHeader,
+  CardMedia,
+  CardActions,
+  IconButton,
+  Avatar,
+  Card,
+  Box,
+} from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
-import Avatar from "@mui/material/Avatar";
 import { red } from "@mui/material/colors";
 import { Film } from "../../shared/api/store/model/IApiFilmsResponse";
 
 interface FilmCardProps {
   film: Film;
+  favoritHandler?: () => Promise<void>;
 }
 
 export const FilmCard: FC<FilmCardProps> = ({ film }) => {
-  const { nameRu, nameEn, year, filmLength, rating, posterUrl } = film;
+  const { filmId, nameRu, nameEn, year, filmLength, rating, posterUrl } = film;
 
   return (
     <Card sx={{ maxWidth: 500 }}>
@@ -33,7 +38,14 @@ export const FilmCard: FC<FilmCardProps> = ({ film }) => {
           nameEn || "нет"
         }, год выхода: ${year} продолжительность фильма: ${filmLength} `}
       />
-      <CardMedia component="img" height="500" image={posterUrl} alt={nameRu} />
+      <Box component={Link} to={`${filmId}`} sx={{}}>
+        <CardMedia
+          component="img"
+          height="500"
+          image={posterUrl}
+          alt={nameRu}
+        />
+      </Box>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />

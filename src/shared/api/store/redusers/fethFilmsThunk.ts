@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { URL_TOP_FILMS, API_KEY } from "../apiKeys/apiKeys";
+import { URL_TOP_FILMS, API_KEY } from "../../apiKeys/apiKeys";
 import { ApiFilmsResponse } from "../model/IApiFilmsResponse";
 
 const config = {
@@ -17,7 +17,7 @@ export const fetchFilmsThunk = createAsyncThunk(
       const response = await axios.get<ApiFilmsResponse>(
         URL_TOP_FILMS + page,
         config
-      ); // так же можно ? (неявное приведение) TS не ругается
+      );
       return response.data.films;
     } catch (e) {
       return thunkAPI.rejectWithValue("Не удалозь загрузить страницу");

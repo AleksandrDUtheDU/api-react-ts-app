@@ -1,14 +1,13 @@
 import { Container } from "@mui/material";
 import { useEffect, useState } from "react";
-import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
-import Grid from "@mui/material/Grid";
+import { Pagination, Box, Stack, Grid } from "@mui/material";
 import { useAppSelector } from "../../shared/hooks/useAppSelector";
 import { useAppDispath } from "../../shared/hooks/useAppDispath";
 import { fetchFilmsThunk } from "../../shared/api/store/redusers/fethFilmsThunk";
+import { SearchBar } from "../../entities/SearchPanel/SearchBar";
 import { FilmCard } from "../../entities/FilmCart/FilmCart";
 
-export function MainPage() {
+export default function MainPage() {
   const dispatch = useAppDispath();
   const { films, isLoading, error } = useAppSelector(
     (state) => state.filmsReducer
@@ -34,6 +33,9 @@ export function MainPage() {
 
   return (
     <Container sx={{ mt: 10 }} component="main" maxWidth="lg">
+      <Box sx={{ mb: 5, alignItems: "center", justify: "center" }}>
+        <SearchBar />
+      </Box>
       {isLoading && <h1>Идет загрузка...</h1>}
       {error && <h1>{error}</h1>}
       <Grid
