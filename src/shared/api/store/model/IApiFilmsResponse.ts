@@ -5,12 +5,53 @@ export interface Country {
 export interface Genre {
   genre: string;
 }
-
-export interface Film {
+interface IFilmSearch {
   filmId: number;
   nameRu: string;
   nameEn: string | null;
-  year: string;
+  type?: string;
+  year: number | string;
+  description?: string;
+  filmLength: string;
+  countries?: Country[];
+  genres?: Genre[];
+  rating: string | null;
+  ratingVoteCount?: number;
+  posterUrl: string;
+  posterUrlPreview?: string;
+}
+
+interface IFilmID {
+  filmId: number;
+  nameRu: string;
+  nameEn: string | null;
+  webUrl?: string;
+  posterUrl: string;
+  posterUrlPreview?: string;
+  year: number | string;
+  filmLength: string;
+  slogan?: string | null;
+  description?: string;
+  type?: string;
+  ratingMpaa?: string;
+  ratingAgeLimits?: number;
+  premiereRu?: string | null;
+  distributors?: string;
+  premiereWorld?: string | null;
+  premiereDigital?: string | null;
+  premiereWorldCountry?: string | null;
+  premiereDvd?: string | null;
+  premiereBluRay?: string | null;
+  distributorRelease?: string;
+  countries?: Country[];
+  genres?: Genre[];
+}
+
+export interface Film extends IFilmID, IFilmSearch {
+  filmId: number;
+  nameRu: string;
+  nameEn: string | null;
+  year: string | number;
   filmLength: string;
   rating: string | null;
   posterUrl: string;

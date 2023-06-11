@@ -2,15 +2,13 @@ import {
   CardHeader,
   CardMedia,
   CardActions,
-  IconButton,
   CardContent,
   Card,
   Typography,
 } from "@mui/material";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
 import { useFetchIDFilmQuery } from "../../shared/api/services";
 import { useCurrentPathArr } from "../../shared/hooks/useCurrentPathArr";
+import { FavortButton } from "../../entities/FavortButton/FavortButton";
 
 export default function FilmInfoPage() {
   const pathArr = useCurrentPathArr();
@@ -52,12 +50,7 @@ export default function FilmInfoPage() {
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
-            </IconButton>
-            <IconButton aria-label="share">
-              <ShareIcon />
-            </IconButton>
+            {film.data && <FavortButton film={film.data} />}
           </CardActions>
         </Card>
       )}

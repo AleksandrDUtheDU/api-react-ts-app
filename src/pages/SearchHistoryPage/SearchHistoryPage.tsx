@@ -7,35 +7,13 @@ import {
   ListItemText,
   ListItem,
 } from "@mui/material";
-import { searchCollection } from "../../shared/firebase";
-import { onSnapshot, QuerySnapshot, DocumentData } from "firebase/firestore";
+import { IHistoryItem } from "../../shared/api/store/redusers/HistorySlise/IHistoryItem";
 
 export function SearchHistoryPage() {
-  const [history, setHistory] = useState<HistoryType[]>([]);
-
-  interface HistoryType {
-    serarchItem?: string;
-    time?: string;
-    id?: string;
-  }
-
-  useEffect(
-    () =>
-      onSnapshot(searchCollection, (snapshot: QuerySnapshot<DocumentData>) => {
-        setHistory(
-          snapshot.docs.map((doc) => {
-            return {
-              id: doc.id,
-              ...doc.data(),
-            };
-          })
-        );
-      }),
-    []
-  );
+  const [history, setHistory] = useState<IHistoryItem[]>([]);
 
   const items = history.map((item) => (
-    <ListItem key={item.id}>
+    <ListItem key={item.time}>
       <ListItemText primary={item.serarchItem} secondary={item.time} />
     </ListItem>
   ));

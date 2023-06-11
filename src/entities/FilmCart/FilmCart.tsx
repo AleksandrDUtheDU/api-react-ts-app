@@ -4,15 +4,13 @@ import {
   CardHeader,
   CardMedia,
   CardActions,
-  IconButton,
   Avatar,
   Card,
   Box,
 } from "@mui/material";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
 import { red } from "@mui/material/colors";
 import { Film } from "../../shared/api/store/model/IApiFilmsResponse";
+import { FavortButton } from "../FavortButton/FavortButton";
 
 interface FilmCardProps {
   film: Film;
@@ -47,12 +45,7 @@ export const FilmCard: FC<FilmCardProps> = ({ film }) => {
         />
       </Box>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
+        <FavortButton film={film} />
       </CardActions>
     </Card>
   );

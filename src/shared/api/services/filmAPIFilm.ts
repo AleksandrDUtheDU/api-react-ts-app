@@ -1,33 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 import { BASE_URL_FILMS, API_KEY } from "../apiKeys/apiKeys";
-
-interface Film {
-  filmId: number;
-  nameRu: string;
-  nameEn: string;
-  webUrl: string;
-  posterUrl: string;
-  posterUrlPreview: string;
-  year: number;
-  filmLength: string;
-  slogan: string | null;
-  description: string;
-  type: string;
-  ratingMpaa: string;
-  ratingAgeLimits: number;
-  premiereRu: string | null;
-  distributors: string;
-  premiereWorld: string | null;
-  premiereDigital: string | null;
-  premiereWorldCountry: string | null;
-  premiereDvd: string | null;
-  premiereBluRay: string | null;
-  distributorRelease: string;
-  countries: { country: string }[];
-  genres: { genre: string }[];
-  facts: any[];
-  seasons: any[];
-}
+import { Film } from "../store/model/IApiFilmsResponse";
 
 interface SearchToIdResponce {
   data: Film;

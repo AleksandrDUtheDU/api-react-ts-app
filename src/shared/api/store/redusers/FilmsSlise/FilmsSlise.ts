@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { FilmsState } from "../model/IFilmState";
-import { Film } from "../model/IApiFilmsResponse";
+import { FilmsState } from "../../model/IFilmState";
+import { Film } from "../../model/IApiFilmsResponse";
 import { fetchFilmsThunk } from "./fethFilmsThunk";
 
 const initialState: FilmsState = {

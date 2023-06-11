@@ -1,28 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 import { BASE_URL_FILMS, API_KEY } from "../apiKeys/apiKeys";
 
+import { Film } from "../store/model/IApiFilmsResponse";
+
 interface SearchToStringResponce {
   keyword: string;
   pagesCount: number;
-  films: {
-    filmId: number;
-    nameRu: string;
-    nameEn: string;
-    type: string;
-    year: string;
-    description: string;
-    filmLength: string;
-    countries: {
-      country: string;
-    }[];
-    genres: {
-      genre: string;
-    }[];
-    rating: string;
-    ratingVoteCount: number;
-    posterUrl: string;
-    posterUrlPreview: string;
-  }[];
+  films: Film[];
   searchFilmsCountResult: number;
 }
 

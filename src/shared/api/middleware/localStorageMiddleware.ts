@@ -1,0 +1,89 @@
+import { Middleware } from "redux";
+import { auth } from "../../firebase/config/fairbase";
+import { Film } from "../store/model/IApiFilmsResponse";
+import { IHistoryItem } from "../store/redusers/HistorySlise/IHistoryItem";
+
+export const localStorageMiddleware: Middleware =
+  (store) => (next) => (action) => {
+    if (auth.currentUser?.email) {
+      console.log(action.type);
+
+      switch (action.type) {
+        case "favorites/addToFavorite":
+          {
+            const localStorageFavorites = localStorage.getItem(
+              `${auth.currentUser?.email}/favorites`
+            );
+            if (localStorageFavorites) {
+              const films: Film[] = JSON.parse(localStorageFavorites);
+              const cheked = films.filter((film) => {
+                return action.payload.filmId !== film.filmId;
+              });
+              cheked.push(action.payload);
+              localStorage.setItem(
+                `${auth.currentUser?.email}/favorites`,
+                JSON.stringify(cheked)
+              );
+            } else {
+              localStorage.setItem(
+                `${auth.currentUser?.email}/favorites`,
+                JSON.stringify([action.payload])
+              );
+            }
+          }
+          break;
+        case "favorites/removeFavorite":
+          {
+            const localStorageFavorites = localStorage.getItem(
+              `${auth.currentUser?.email}/favorites`
+            );
+            if (localStorageFavorites) {
+              const films: Film[] = JSON.parse(localStorageFavorites);
+              const cheked = films.filter((film) => {
+                return action.payload.filmId !== film.filmId;
+              });
+              localStorage.setItem(
+                `${auth.currentUser?.email}/favorites`,
+                JSON.stringify(cheked)
+              );
+            }
+          }
+          break;
+        case "filmAPISearch/executeQuery/fulfilled":
+          {
+            const localStorageHistory = localStorage.getItem(
+              `${auth.currentUser?.email}/history`
+            );
+            console.log("history");
+            if (localStorageHistory) {
+              const history: IHistoryItem[] = JSON.parse(localStorageHistory);
+              history.push({
+                serarchItem: action.payload.keyword,
+                time: new Date().toString(),
+              });
+              localStorage.setItem(
+                `${auth.currentUser?.email}/history`,
+                JSON.stringify(history)
+              );
+            } else {
+              localStorage.setItem(
+                `${auth.currentUser?.email}/history`,
+                JSON.stringify([
+                  {
+                    serarchItem: action.payload.keyword,
+                    time: new Date().toString(),
+                  },
+                ])
+              );
+            }
+          }
+          break;
+        default:
+          break;
+      }
+    } else {
+      console.log(auth);
+    }
+
+    next(action);
+  };

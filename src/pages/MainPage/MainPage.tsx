@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Pagination, Stack, Grid } from "@mui/material";
 import { useAppSelector } from "../../shared/hooks/useAppSelector";
 import { useAppDispath } from "../../shared/hooks/useAppDispath";
-import { fetchFilmsThunk } from "../../shared/api/store/redusers/fethFilmsThunk";
+import { fetchFilmsThunk } from "../../shared/api/store/redusers/FilmsSlise/fethFilmsThunk";
 import { FilmCard } from "../../entities/FilmCart/FilmCart";
 
 export default function MainPage() {

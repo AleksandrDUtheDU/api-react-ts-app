@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { URL_TOP_FILMS, API_KEY } from "../../apiKeys/apiKeys";
-import { ApiFilmsResponse } from "../model/IApiFilmsResponse";
+import { URL_TOP_FILMS, API_KEY } from "../../../apiKeys/apiKeys";
+import { ApiFilmsResponse } from "../../model/IApiFilmsResponse";
 
 const config = {
   headers: {
