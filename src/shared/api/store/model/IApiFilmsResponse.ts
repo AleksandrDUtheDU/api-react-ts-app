@@ -19,6 +19,7 @@ export interface Film {
   posterUrlPreview?: string;
   ratingChange?: null | number;
   ratingVoteCount?: number;
+  [key: string]: unknown;
 }
 
 export interface ApiFilmsResponse {

@@ -45,6 +45,14 @@ export function LayoutHeader() {
         <Container maxWidth="lg">
           <Toolbar>
             <Logo />
+            <Button
+              component={Link}
+              to={ROUTES.SEARCH_PAGE_URL}
+              color="inherit"
+              sx={{ marginLeft: 1, fontSize: 16 }}
+            >
+              ПОИСК
+            </Button>
             {user ? (
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
@@ -71,14 +79,14 @@ export function LayoutHeader() {
                   <MenuItem
                     onClick={handleCloseUserMenu}
                     component={Link}
-                    to={ROUTES.FAVORITS}
+                    to={ROUTES.FAVORITS_PAGE_URL}
                   >
                     <Typography textAlign="center">Избранное</Typography>
                   </MenuItem>
                   <MenuItem
                     onClick={handleCloseUserMenu}
                     component={Link}
-                    to={ROUTES.SEARCH_HISTORY}
+                    to={ROUTES.SEARCH_HISTORY_PAGE_URL}
                   >
                     <Typography textAlign="center">
                       История просмотров
