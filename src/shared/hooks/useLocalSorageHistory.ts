@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useAppDispath } from "./useAppDispath";
 import { useUserAuth } from "../firebase";
 import { addToHistory } from "../api/store/redusers/HistorySlise/FavoriteSlise";
@@ -7,13 +8,15 @@ export const useLocalSorageHistory = () => {
   const dispatch = useAppDispath();
   const { user } = useUserAuth();
 
-  if (user?.email) {
-    const localHistory = localStorage.getItem(`${user.email}/history`);
-    if (localHistory) {
-      const history: IHistoryItem[] = JSON.parse(localHistory);
-      history.forEach((item) => {
-        dispatch(addToHistory(item));
-      });
+  useEffect(() => {
+    if (user?.email) {
+      const localHistory = localStorage.getItem(`${user.email}/history`);
+      if (localHistory) {
+        const history: IHistoryItem[] = JSON.parse(localHistory);
+        history.forEach((item) => {
+          dispatch(addToHistory(item));
+        });
+      }
     }
-  }
+  }, [user, dispatch]);
 };

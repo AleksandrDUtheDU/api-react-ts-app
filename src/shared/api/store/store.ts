@@ -1,6 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { favorite } from "./redusers/FavoriteSlise/FavoriteSlise";
-import { IsAuthMiddleware } from "../middleware/IsAuthMiddleware";
 import { localStorageMiddleware } from "../middleware/localStorageMiddleware";
 import filmsReducer from "./redusers/FilmsSlise/FilmsSlise";
 import { filmAPIFilm, filmAPISearch } from "../services";
@@ -20,9 +19,7 @@ export const store = configureStore({
     getDefaultMiddleware({}).concat(
       filmAPIFilm.middleware,
       filmAPISearch.middleware,
-      IsAuthMiddleware,
       localStorageMiddleware
-      // customMiddleware,
     ),
 });
 

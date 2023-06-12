@@ -1,4 +1,4 @@
-import { useState, ChangeEventHandler, useEffect } from "react";
+import { useState, ChangeEventHandler } from "react";
 import {
   Pagination,
   Stack,
@@ -11,20 +11,16 @@ import { FilmCard } from "../../entities/FilmCart/FilmCart";
 import SearchIcon from "@mui/icons-material/Search";
 import { useDebounce } from "../../shared/hooks/useDebounse";
 import { useFetchToStringFilmQuery } from "../../shared/api/services";
-import { useAppDispath } from "../../shared/hooks/useAppDispath";
 
 export default function SearchPage() {
   const [page, setPage] = useState(1);
   const [value, setValue] = useState<string>("");
   const debouncedValue = useDebounce<string>(value, 1000);
-  const dispatch = useAppDispath();
 
   const { data, isLoading, error } = useFetchToStringFilmQuery([
     debouncedValue,
     page,
   ]);
-
-  console.log(data);
 
   const handleChangePage = (
     event: React.ChangeEvent<unknown>,

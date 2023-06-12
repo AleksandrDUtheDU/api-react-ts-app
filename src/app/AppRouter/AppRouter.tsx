@@ -9,14 +9,13 @@ import { AuthReg, AuthSingIn } from "../../widgets/AuthForm";
 import { ErrorPage } from "../../pages/ErrorPage/ErrorPage";
 import { ProtectedRoute } from "./ProtectedRoute/ProtectedRoute";
 import { ROUTES } from "../pathRouter";
-import MainPage from "../../pages/MainPage/MainPage";
 
 const SearchHistoryPage = lazy(
   () => import("../../pages/SearchHistoryPage/SearchHistoryPage")
 );
 const SearchPage = lazy(() => import("../../pages/SearchPage/SearchPage"));
 const FilmInfoPage = lazy(() => import("../../pages/FilmInfo/FilmInfo"));
-//const MainPage = lazy(() => import("../../pages/MainPage/MainPage"));
+const MainPage = lazy(() => import("../../pages/MainPage/MainPage"));
 const FavoritsPage = lazy(
   () => import("../../pages/FavoritsPage/FavoritsPage")
 );
@@ -31,10 +30,9 @@ export const router = createBrowserRouter(
       <Route
         index
         element={
-          // <Suspense fallback={<div>Loading...</div>}>
-          //   <MainPage />
-          // </Suspense>
-          <MainPage />
+          <Suspense fallback={<div>Loading...</div>}>
+            <MainPage />
+          </Suspense>
         }
       />
       <Route

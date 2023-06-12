@@ -6,6 +6,7 @@ import {
   addToFavorite,
   removeFavorite,
 } from "../store/redusers/FavoriteSlise/FavoriteSlise";
+
 export const localStorageMiddleware: Middleware =
   (store) => (next) => (action) => {
     if (auth.currentUser?.email) {
@@ -85,8 +86,16 @@ export const localStorageMiddleware: Middleware =
           break;
       }
     } else {
-      console.log(auth);
+      switch (action.type) {
+        case addToFavorite.type: {
+          alert("Необходимо зарегестрироваться!");
+          return null;
+        }
+        case removeFavorite.type: {
+          alert("Необходимо зарегестрироваться!");
+          return null;
+        }
+      }
     }
-
     next(action);
   };

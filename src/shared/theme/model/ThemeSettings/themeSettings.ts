@@ -1,4 +1,17 @@
-export const themeSettings: any = (mode: string) => {
+type ThemeMode = "light" | "dark";
+
+type ThemeSettings = {
+  palette: {
+    mode: ThemeMode;
+    primary: {
+      main: string;
+    };
+  };
+};
+
+type ThemeSettingsFunction = (mode: ThemeMode) => ThemeSettings;
+
+export const themeSettings: ThemeSettingsFunction = (mode: ThemeMode) => {
   return {
     palette: {
       mode: mode,
