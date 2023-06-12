@@ -3,6 +3,7 @@ import {
   Route,
   createBrowserRouter,
   createRoutesFromElements,
+  createHashRouter,
 } from "react-router-dom";
 import { Layout } from "../../pages/Layout/Layout";
 import { AuthReg, AuthSingIn } from "../../widgets/AuthForm";
@@ -20,7 +21,7 @@ const FavoritsPage = lazy(
   () => import("../../pages/FavoritsPage/FavoritsPage")
 );
 
-export const router = createBrowserRouter(
+export const router = createHashRouter(
   createRoutesFromElements(
     <Route
       path={ROUTES.HOME_URL}
