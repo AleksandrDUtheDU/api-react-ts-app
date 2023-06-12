@@ -1,11 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { favorite } from "./redusers/FavoriteSlise/FavoriteSlise";
-import { history } from "./redusers/HistorySlise/HistorySlise";
 import { IsAuthMiddleware } from "../middleware/IsAuthMiddleware";
 import { localStorageMiddleware } from "../middleware/localStorageMiddleware";
-// import { customMiddleware } from "../middleware/customMiddleware";
 import filmsReducer from "./redusers/FilmsSlise/FilmsSlise";
 import { filmAPIFilm, filmAPISearch } from "../services";
+import { history } from "./redusers/HistorySlise/FavoriteSlise";
 
 const rootReducer = combineReducers({
   filmsReducer,

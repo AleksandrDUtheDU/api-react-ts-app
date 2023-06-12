@@ -1,15 +1,16 @@
 import { Middleware } from "redux";
 import { auth } from "../../firebase/config/fairbase";
 import { Film } from "../store/model/IApiFilmsResponse";
-import { IHistoryItem } from "../store/redusers/HistorySlise/IHistoryItem";
-
+import { IHistoryItem } from "../services/IHistoryItem";
+import {
+  addToFavorite,
+  removeFavorite,
+} from "../store/redusers/FavoriteSlise/FavoriteSlise";
 export const localStorageMiddleware: Middleware =
   (store) => (next) => (action) => {
     if (auth.currentUser?.email) {
-      console.log(action.type);
-
       switch (action.type) {
-        case "favorites/addToFavorite":
+        case addToFavorite.type:
           {
             const localStorageFavorites = localStorage.getItem(
               `${auth.currentUser?.email}/favorites`
@@ -32,7 +33,7 @@ export const localStorageMiddleware: Middleware =
             }
           }
           break;
-        case "favorites/removeFavorite":
+        case removeFavorite.type:
           {
             const localStorageFavorites = localStorage.getItem(
               `${auth.currentUser?.email}/favorites`
@@ -50,6 +51,8 @@ export const localStorageMiddleware: Middleware =
           }
           break;
         case "filmAPISearch/executeQuery/fulfilled":
+          console.log(action.type);
+
           {
             const localStorageHistory = localStorage.getItem(
               `${auth.currentUser?.email}/history`

@@ -1,42 +1,35 @@
-import { useState, useEffect, ChangeEventHandler } from "react";
-import {
-  Pagination,
-  Stack,
-  Grid,
-  Container,
-  TextField,
-  InputAdornment,
-  Typography,
-} from "@mui/material";
+import { Container } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Pagination, Stack, Grid } from "@mui/material";
+import { useAppSelector } from "../../shared/hooks/useAppSelector";
+import { useAppDispath } from "../../shared/hooks/useAppDispath";
+import { fetchFilmsThunk } from "../../shared/api/store/redusers/FilmsSlise/fethFilmsThunk";
 import { FilmCard } from "../../entities/FilmCart/FilmCart";
-import SearchIcon from "@mui/icons-material/Search";
-import { useDebounce } from "../../shared/hooks/useDebounse";
-import { useFetchIDFilmQuery } from "../../shared/api/services";
+import { useLocalSorageFavorits } from "../../shared/hooks/useLocalSorageFavorits";
 
 export default function FavoritsPage() {
-  const [page, setPage] = useState(1);
+  const dispatch = useAppDispath();
+  useLocalSorageFavorits();
 
-  const handleChangePage = (
-    event: React.ChangeEvent<unknown>,
-    value: number
-  ) => {
-    setPage(value);
-  };
+  const favorite = useAppSelector((state) => state.favorite);
+
+  const cartItems = favorite.map((film) => (
+    <Grid item xs={2} sm={4} md={4} key={film.filmId}>
+      <FilmCard film={film} />
+    </Grid>
+  ));
 
   return (
     <Container sx={{ mt: 10 }} component="main" maxWidth="lg">
-      <Typography>Страница Избранное</Typography>
-      <Stack
-        spacing={4}
-        sx={{ mt: 4, alignItems: "center", justify: "center" }}
+      {/* {isLoading && <h1>Идет загрузка...</h1>}
+      {error && <h1>{error}</h1>} */}
+      <Grid
+        container
+        spacing={{ xs: 2, md: 3 }}
+        columns={{ xs: 2, sm: 8, md: 8 }}
       >
-        <Pagination
-          size="large"
-          count={10}
-          page={page}
-          onChange={handleChangePage}
-        />
-      </Stack>
+        {favorite && cartItems}
+      </Grid>
     </Container>
   );
 }

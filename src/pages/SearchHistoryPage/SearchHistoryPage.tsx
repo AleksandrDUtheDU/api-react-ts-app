@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import {
   Container,
   Typography,
@@ -7,10 +6,12 @@ import {
   ListItemText,
   ListItem,
 } from "@mui/material";
-import { IHistoryItem } from "../../shared/api/store/redusers/HistorySlise/IHistoryItem";
+import { useAppSelector } from "../../shared/hooks/useAppSelector";
+import { useLocalSorageHistory } from "../../shared/hooks/useLocalSorageHistory";
 
-export function SearchHistoryPage() {
-  const [history, setHistory] = useState<IHistoryItem[]>([]);
+export default function SearchHistoryPage() {
+  useLocalSorageHistory();
+  const history = useAppSelector((state) => state.history);
 
   const items = history.map((item) => (
     <ListItem key={item.time}>

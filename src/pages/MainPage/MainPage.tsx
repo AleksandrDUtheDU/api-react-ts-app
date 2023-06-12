@@ -5,13 +5,15 @@ import { useAppSelector } from "../../shared/hooks/useAppSelector";
 import { useAppDispath } from "../../shared/hooks/useAppDispath";
 import { fetchFilmsThunk } from "../../shared/api/store/redusers/FilmsSlise/fethFilmsThunk";
 import { FilmCard } from "../../entities/FilmCart/FilmCart";
+import { useLocalSorageFavorits } from "../../shared/hooks/useLocalSorageFavorits";
 
 export default function MainPage() {
+  const [page, setPage] = useState(1);
   const dispatch = useAppDispath();
   const { films, isLoading, error } = useAppSelector(
     (state) => state.filmsReducer
   );
-  const [page, setPage] = useState(1);
+  useLocalSorageFavorits();
 
   const handleChangePage = (
     event: React.ChangeEvent<unknown>,

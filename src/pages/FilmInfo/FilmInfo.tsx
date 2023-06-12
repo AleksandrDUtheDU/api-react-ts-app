@@ -9,6 +9,7 @@ import {
 import { useFetchIDFilmQuery } from "../../shared/api/services";
 import { useCurrentPathArr } from "../../shared/hooks/useCurrentPathArr";
 import { FavortButton } from "../../entities/FavortButton/FavortButton";
+import { useLocalSorageFavorits } from "../../shared/hooks/useLocalSorageFavorits";
 
 export default function FilmInfoPage() {
   const pathArr = useCurrentPathArr();
@@ -17,6 +18,7 @@ export default function FilmInfoPage() {
     isLoading,
     error,
   } = useFetchIDFilmQuery(pathArr[pathArr.length - 1]);
+  useLocalSorageFavorits();
 
   return (
     <>

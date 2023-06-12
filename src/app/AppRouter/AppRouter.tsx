@@ -8,12 +8,18 @@ import { Layout } from "../../pages/Layout/Layout";
 import { AuthReg, AuthSingIn } from "../../widgets/AuthForm";
 import { ErrorPage } from "../../pages/ErrorPage/ErrorPage";
 import { ProtectedRoute } from "./ProtectedRoute/ProtectedRoute";
-import { SearchHistoryPage } from "../../pages/SearchHistoryPage/SearchHistoryPage";
 import { ROUTES } from "../pathRouter";
+import MainPage from "../../pages/MainPage/MainPage";
 
+const SearchHistoryPage = lazy(
+  () => import("../../pages/SearchHistoryPage/SearchHistoryPage")
+);
 const SearchPage = lazy(() => import("../../pages/SearchPage/SearchPage"));
 const FilmInfoPage = lazy(() => import("../../pages/FilmInfo/FilmInfo"));
-const MainPage = lazy(() => import("../../pages/MainPage/MainPage"));
+//const MainPage = lazy(() => import("../../pages/MainPage/MainPage"));
+const FavoritsPage = lazy(
+  () => import("../../pages/FavoritsPage/FavoritsPage")
+);
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,9 +31,10 @@ export const router = createBrowserRouter(
       <Route
         index
         element={
-          <Suspense fallback={<div>Loading...</div>}>
-            <MainPage />
-          </Suspense>
+          // <Suspense fallback={<div>Loading...</div>}>
+          //   <MainPage />
+          // </Suspense>
+          <MainPage />
         }
       />
       <Route
@@ -53,7 +60,9 @@ export const router = createBrowserRouter(
         path={ROUTES.FAVORITS_PAGE_URL}
         element={
           <ProtectedRoute>
-            <h1>Избранное</h1>
+            <Suspense fallback={<div>Loading...</div>}>
+              <FavoritsPage />
+            </Suspense>
           </ProtectedRoute>
         }
       />
@@ -61,7 +70,9 @@ export const router = createBrowserRouter(
         path={ROUTES.SEARCH_HISTORY_PAGE_URL}
         element={
           <ProtectedRoute>
-            <SearchHistoryPage />
+            <Suspense fallback={<div>Loading...</div>}>
+              <SearchHistoryPage />
+            </Suspense>
           </ProtectedRoute>
         }
       />

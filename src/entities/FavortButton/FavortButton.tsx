@@ -1,8 +1,9 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { IconButton } from "@mui/material";
 import { Film } from "../../shared/api/store/model/IApiFilmsResponse";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useAppDispath } from "../../shared/hooks/useAppDispath";
+import { useAppSelector } from "../../shared/hooks/useAppSelector";
 import { useUserAuth } from "../../shared/firebase";
 import {
   addToFavorite,
@@ -10,21 +11,23 @@ import {
 } from "../../shared/api/store/redusers/FavoriteSlise/FavoriteSlise";
 
 export const FavortButton: FC<{ film: Film }> = ({ film }) => {
-  const [favorites, setFavorites] = useState(false);
   const dispatch = useAppDispath();
   const { user } = useUserAuth();
+  const favorite = useAppSelector((state) => state.favorite);
+
+  const isFavoriteStore = favorite.find((item) => {
+    return item.filmId === film.filmId;
+  });
 
   const addFavorites = () => {
     dispatch(addToFavorite(film));
-    setFavorites(true);
   };
 
   const removeFavorites = () => {
     dispatch(removeFavorite(film));
-    setFavorites(false);
   };
 
-  return favorites && user ? (
+  return isFavoriteStore && user ? (
     <IconButton
       onClick={removeFavorites}
       color="error"

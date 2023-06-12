@@ -36,7 +36,7 @@ export const FilmCard: FC<FilmCardProps> = ({ film }) => {
           nameEn || "нет"
         }, год выхода: ${year} продолжительность фильма: ${filmLength} `}
       />
-      <Box component={Link} to={`${filmId}`} sx={{}}>
+      <Box component={Link} to={`/${filmId}`} sx={{}}>
         <CardMedia
           component="img"
           height="500"

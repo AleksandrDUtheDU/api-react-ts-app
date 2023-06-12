@@ -12,7 +12,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useDebounce } from "../../shared/hooks/useDebounse";
 import { useFetchToStringFilmQuery } from "../../shared/api/services";
 import { useAppDispath } from "../../shared/hooks/useAppDispath";
-import { addedToHistory } from "../../shared/api/store/redusers/HistorySlise/HistorySlise";
 
 export default function SearchPage() {
   const [page, setPage] = useState(1);
@@ -27,16 +26,6 @@ export default function SearchPage() {
 
   console.log(data);
 
-  // useEffect(() => {
-  //   dispatch(
-  //     addedToHistory({
-  //       serarchItem: data?.keyword,
-  //       time: new Date().toString(),
-  //     })
-
-  //   );
-  // }, [dispatch, debouncedValue]);
-
   const handleChangePage = (
     event: React.ChangeEvent<unknown>,
     value: number
@@ -46,12 +35,6 @@ export default function SearchPage() {
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     setValue(event.target.value);
-    // dispatch(
-    //   addedToHistory({
-    //     serarchItem: debouncedValue,
-    //     time: new Date().toString(),
-    //   })
-    // );
   };
 
   const cartItems = data?.films.map((film) => (

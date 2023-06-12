@@ -7,7 +7,12 @@ const favoritesSlice = createSlice({
   initialState: [] as Film[],
   reducers: {
     addToFavorite(state, action: PayloadAction<Film>) {
-      state.push(action.payload);
+      const isAdd = state.find((film) => {
+        return action.payload.filmId === film.filmId;
+      });
+      if (!isAdd) {
+        state.push(action.payload);
+      }
     },
     removeFavorite(state, action: PayloadAction<Film>) {
       const indexOfObject = state.findIndex((obj: Film) => {
